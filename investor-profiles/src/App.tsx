@@ -6,6 +6,7 @@ import OutcomePage from './pages/OutcomePage';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from './theme';
 import './App.css'
+import InvestorTypePage from './pages/InvestorTypePage';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Router basename="/6C85-FP/">
         <Routes>
           <Route path="/" element={<LandingPage />} />
+          <Route path="/investor-type" element={<InvestorTypePage />} />
           <Route path="/budget" element={<BudgetPage />} />
           <Route path="/outcome" element={<OutcomePage />} />
         </Routes>

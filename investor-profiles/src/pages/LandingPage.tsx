@@ -1,11 +1,12 @@
-import React from 'react';
-import { useLocation } from 'react-router';
+import { Button } from "@mui/material";
+import React from "react";
 
 const LandingPage = () => {
-  const loc = useLocation();
-  const params = new URLSearchParams(loc.search);
-  console.log(params.get("foo"));
-  return (<div> The landing page! </div>);
+  return (
+    <div>
+      <Button href="/6C85-FP/investor-type">Start here</Button>
+    </div>
+  );
 };
 
 export default LandingPage;
