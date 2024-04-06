@@ -1,8 +1,18 @@
-# React + Vite
+# Investor Profiles React App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The interactive visualization is implemented in TypeScript using React. It is built with Vite and hosted via GitHub Pages.
 
-Currently, two official plugins are available:
+## Local Dev
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```bash
+# from ./investor-prifles
+npm i
+npm run dev
+```
+
+## Deploy
+
+```bash
+# from ./investor-prifles
+npm run deploy
+```
