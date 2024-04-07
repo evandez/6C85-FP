@@ -5,7 +5,7 @@ from pathlib import Path
 
 import pandas as pd
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[1]
 PERMITS_FILE = ROOT / "data/boston_permits.csv"
 SALES_FILE = ROOT / "data/boston_residential_sales.csv"
 
