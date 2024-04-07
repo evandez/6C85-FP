@@ -7,25 +7,29 @@ const INESTOR_TYPES = [
   {
     slug: "institutional",
     title: "Institutional Investor",
-    description: "You are investing as an individual",
+    description:
+      "An institutional investor is an organization or entity that pools money to purchase securities, real estate, and other investment assets or originates loans.",
     image: "https://via.placeholder.com/150",
   },
   {
     slug: "large",
     title: "Large Investor",
-    description: "You are investing as an individual",
+    description:
+      "A large investor typically manages a substantial portfolio, focusing on long-term growth and may engage in diversified, high-volume investments with a strategic approach to risk.",
     image: "https://via.placeholder.com/150",
   },
   {
     slug: "medium",
     title: "Medium Investor",
-    description: "You are investing as an individual",
+    description:
+      "A medium investor typically seeks balanced growth with moderate risk, investing in a diversified portfolio over a medium-term horizon.",
     image: "https://via.placeholder.com/150",
   },
   {
     slug: "small",
     title: "Small Investor",
-    description: "You are investing as an individual",
+    description:
+      "A small investor typically allocates limited capital towards conservative or low-risk investments, focusing on steady, long-term growth and capital preservation.",
     image: "https://via.placeholder.com/150",
   },
 ];
@@ -36,25 +40,35 @@ const InvestorTypeChoice = ({ slug, title, description, image }) => {
     <Box
       sx={{
         display: "flex",
-        flexDirection: "row",
-        width: "48%",
+        flexDirection: "column",
+        width: "44%",
         margin: "1%",
+        gap: 2,
+        padding: "2%",
       }}
     >
-      <img src={image} />
+      <Typography variant="h2">{title}</Typography>
       <Box
         sx={{
           display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-around",
+          flexDirection: "row",
+          gap: 2,
         }}
       >
-        <Typography>{title}</Typography>
-        <Typography>{description}</Typography>
-        <Button onClick={() => navigate(`${NEXT_PAGE}/?investor-type=${slug}`)}>
-          Follow this path
-        </Button>
+        <img src={image} />
+        <Typography variant="body1" sx={{ textAlign: "left" }}>
+          {description}
+        </Typography>
       </Box>
+      <Button
+        sx={{
+          margin: "auto",
+        }}
+        onClick={() => navigate(`${NEXT_PAGE}/?investor-type=${slug}`)}
+        variant="contained"
+      >
+        Follow this path
+      </Button>
     </Box>
   );
 };
