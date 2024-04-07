@@ -23,7 +23,7 @@ pivot_table["total"] = pivot_table.sum(axis=1)
 pivot_table = pivot_table.sort_values("total", ascending=False).drop(columns="total")
 
 # Plotting
-pivot_table.plot(kind="bar", figsize=(14, 8), colormap="viridis")
+pivot_table.plot(kind="bar", figsize=(14, 8))
 plt.xlabel("Neighborhood")
 plt.ylabel("Average Spend ($)")
 plt.title("Average Spend for Each Kind of Investor-Owned Permit by Neighborhood")
