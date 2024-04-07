@@ -9,28 +9,28 @@ const INESTOR_TYPES = [
     title: "Institutional Investor",
     description:
       "An institutional investor is an organization or entity that pools money to purchase securities, real estate, and other investment assets or originates loans.",
-    image: "https://via.placeholder.com/150",
+    image: "https://placehold.co/200x200",
   },
   {
     slug: "large",
     title: "Large Investor",
     description:
       "A large investor typically manages a substantial portfolio, focusing on long-term growth and may engage in diversified, high-volume investments with a strategic approach to risk.",
-    image: "https://via.placeholder.com/150",
+    image: "https://placehold.co/200x200",
   },
   {
     slug: "medium",
     title: "Medium Investor",
     description:
       "A medium investor typically seeks balanced growth with moderate risk, investing in a diversified portfolio over a medium-term horizon.",
-    image: "https://via.placeholder.com/150",
+    image: "https://placehold.co/200x200",
   },
   {
     slug: "small",
     title: "Small Investor",
     description:
       "A small investor typically allocates limited capital towards conservative or low-risk investments, focusing on steady, long-term growth and capital preservation.",
-    image: "https://via.placeholder.com/150",
+    image: "https://placehold.co/200x200",
   },
 ];
 
