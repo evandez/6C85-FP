@@ -1,6 +1,7 @@
+import React, { useEffect, useState } from 'react';
 import { Box, Button, Typography } from "@mui/material";
-import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import Plot from 'react-plotly.js';
 
 const NEXT_PAGE = "/budget";
 
@@ -9,6 +10,22 @@ const InvestorTypeVizPage = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const investorType = searchParams.get("investor-type");
+
+  // State to hold the data for Plotly plot
+  const [plotData, setPlotData] = useState({data: [], layout: {}});
+
+  useEffect(() => {
+    // Determine the file to fetch based on the investorType, or use a default
+    const assetFileName = investorType === 'institutional' ? 'map_1.json' : 'map_1.json';
+    
+    fetch(`/6C85-FP/assets/${assetFileName}`)
+      .then(response => response.json())
+      .then(data => {
+        setPlotData(data);
+      })
+      .catch(error => console.log(error));
+  }, [investorType]); // Dependency array now includes investorType to refetch when it changes
+
   return (
     <Box
       sx={{
@@ -26,9 +43,19 @@ const InvestorTypeVizPage = () => {
           flexDirection: "row",
           gap: 2,
           textAlign: "left",
+          justifyContent: "center", // Added to center content
         }}
       >
-        <img src="https://placehold.co/800x600" alt="placeholder" />
+        {/* Render the Plotly plot */}
+        {plotData.data.length ? (
+          <Plot
+            data={plotData.data}
+            layout={plotData.layout}
+            style={{ width: "800px", height: "600px" }} // Adjusted size to match the previous iframe
+          />
+        ) : (
+          <Typography>Loading visualization...</Typography>
+        )}
         <Box
           sx={{
             display: "flex",
