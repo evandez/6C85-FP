@@ -2,7 +2,7 @@ import { Box, Button, Typography } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const NEXT_PAGE = "/6C85-FP/investor-type/viz";
+const NEXT_PAGE = "/investor-type/viz";
 const INESTOR_TYPES = [
   {
     slug: "institutional",

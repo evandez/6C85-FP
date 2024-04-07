@@ -2,7 +2,7 @@ import { Box, Button, Typography } from "@mui/material";
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-const NEXT_PAGE = "/6C85-FP/budget";
+const NEXT_PAGE = "/budget";
 
 const InvestorTypeVizPage = () => {
   const navigate = useNavigate();
