@@ -1,7 +1,7 @@
 import React from "react";
 
 const OutcomePage = () => {
-  return <div> The outcome page! </div>;
+  return <div> The end...for now! </div>;
 };
 
 export default OutcomePage;

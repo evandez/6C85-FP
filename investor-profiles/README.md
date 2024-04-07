@@ -5,7 +5,7 @@ The interactive visualization is implemented in TypeScript using React. It is bu
 ## Local Dev
 
 ```bash
-# from ./investor-prifles
+# from ./investor-profiles
 npm i
 npm run dev
 ```
@@ -13,6 +13,6 @@ npm run dev
 ## Deploy
 
 ```bash
-# from ./investor-prifles
+# from ./investor-profiles
 npm run deploy
 ```
