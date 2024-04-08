@@ -8,33 +8,29 @@ import img_medium_investor from "../assets/medium_investor.png";
 import img_small_investor from "../assets/small_investor.png";
 
 const NEXT_PAGE = "/investor-type/viz";
-const INESTOR_TYPES = [
+const INVESTOR_TYPES = [
   {
     slug: "institutional",
     title: "Institutional Investor",
-    description:
-      "An institutional investor is an organization or entity that pools money to purchase securities, real estate, and other investment assets or originates loans.",
+    description: "An institutional investor is an organization or entity that pools money to purchase securities, real estate, and other investment assets or originates loans.",
     image: img_institutional_investor,
   },
   {
     slug: "large",
     title: "Large Investor",
-    description:
-      "A large investor typically manages a substantial portfolio, focusing on long-term growth and may engage in diversified, high-volume investments with a strategic approach to risk.",
+    description: "A large investor typically manages a substantial portfolio, focusing on long-term growth and may engage in diversified, high-volume investments with a strategic approach to risk.",
     image: img_large_investor,
   },
   {
     slug: "medium",
     title: "Medium Investor",
-    description:
-      "A medium investor typically seeks balanced growth with moderate risk, investing in a diversified portfolio over a medium-term horizon.",
+    description: "A medium investor typically seeks balanced growth with moderate risk, investing in a diversified portfolio over a medium-term horizon.",
     image: img_medium_investor,
   },
   {
     slug: "small",
     title: "Small Investor",
-    description:
-      "A small investor typically allocates limited capital towards conservative or low-risk investments, focusing on steady, long-term growth and capital preservation.",
+    description: "A small investor typically allocates limited capital towards conservative or low-risk investments, focusing on steady, long-term growth and capital preservation.",
     image: img_small_investor,
   },
 ];
@@ -42,36 +38,13 @@ const INESTOR_TYPES = [
 const InvestorTypeChoice = ({ slug, title, description, image }) => {
   const navigate = useNavigate();
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        width: "44%",
-        margin: "1%",
-        gap: 2,
-        padding: "2%",
-      }}
-    >
+    <Box sx={{ display: "flex", flexDirection: "column", width: "44%", margin: "1%", gap: 2, padding: "2%", }}>
       <Typography variant="h2">{title}</Typography>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "row",
-          gap: 2,
-        }}
-      >
-        <img src={image} style={{ height: "200px", width: "200px" }} />
-        <Typography variant="body1" sx={{ textAlign: "left" }}>
-          {description}
-        </Typography>
+      <Box sx={{ display: "flex", flexDirection: "row", gap: 2, }}>
+        <img src={image} alt={title} style={{ height: "200px", width: "200px" }} />
+        <Typography variant="body1" sx={{ textAlign: "left" }}>{description}</Typography>
       </Box>
-      <Button
-        sx={{
-          margin: "auto",
-        }}
-        onClick={() => navigate(`${NEXT_PAGE}/?investor-type=${slug}`)}
-        variant="contained"
-      >
+      <Button sx={{ margin: "auto" }} onClick={() => navigate(`${NEXT_PAGE}/?investor-type=${slug}`)} variant="contained">
         Follow this path
       </Button>
     </Box>
@@ -79,17 +52,21 @@ const InvestorTypeChoice = ({ slug, title, description, image }) => {
 };
 
 const InvestorTypePage = () => {
+  const navigate = useNavigate();
+
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "row",
-        flexWrap: "wrap",
-      }}
-    >
-      {INESTOR_TYPES.map((investorType, index) => (
-        <InvestorTypeChoice key={`choice-${index}`} {...investorType} />
-      ))}
+    <Box sx={{ display: "flex", flexDirection: "column", alignItems: "flex-start", }}>
+      <Box sx={{ display: "flex", flexDirection: "row", flexWrap: "wrap", }}>
+        {INVESTOR_TYPES.map((investorType, index) => (
+          <InvestorTypeChoice key={`choice-${index}`} {...investorType} />
+        ))}
+      </Box>
+      {/* Ensure the Go Back button is at the bottom */}
+      <Box sx={{ alignSelf: "center", width: "100%", textAlign: "center", marginTop: "20px" }}>
+        <Button variant="contained" onClick={() => navigate(-1)}>
+          Go Back
+        </Button>
+      </Box>
     </Box>
   );
 };

@@ -5,24 +5,24 @@ import { useLocation, useNavigate } from "react-router-dom";
 const NEXT_PAGE = "/budget/viz";
 const INVESTOR_TYPE_TO_BUDGET_RANGES = {
   institutional: {
-    min: 1000000,
-    max: 5000000,
-    step: 1000000,
+    min: 250000,
+    max: 2000000,
+    step: 250000,
   },
   large: {
-    min: 1000000,
-    max: 5000000,
-    step: 1000000,
+    min: 250000,
+    max: 2000000,
+    step: 250000,
   },
   medium: {
-    min: 1000000,
-    max: 5000000,
-    step: 1000000,
+    min: 250000,
+    max: 2000000,
+    step: 250000,
   },
   small: {
-    min: 1000000,
-    max: 5000000,
-    step: 1000000,
+    min: 250000,
+    max: 2000000,
+    step: 250000,
   },
 };
 
@@ -52,17 +52,36 @@ const BudgetPage = () => {
         onChange={(event) => setBudget(event.target.value)}
         marks
       />
+        <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          gap: 2,
+        }}
+      >
+      <Button
+          variant="contained"
+          onClick={() => navigate(-1)}
+          sx={{
+            mt: 2,
+          }}
+        >
+          Go Back
+        </Button>
       <Button
         variant="contained"
         onClick={() =>
           navigate(`${NEXT_PAGE}?${searchParams.toString()}&budget=${budget}`)
         }
         sx={{
-          margin: "auto",
+          mt : 2,
+          // margin: "auto",
         }}
       >
         Set Budget
       </Button>
+      </Box>
     </Box>
   );
 };
