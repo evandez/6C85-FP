@@ -9,6 +9,7 @@ import "./App.css";
 import InvestorTypePage from "./pages/InvestorTypePage";
 import InvestorTypeVizPage from "./pages/InvestorTypeVizPage";
 import BudgetVizPage from "./pages/BudgetVizPage";
+import StylePage from "./pages/StylePage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/investor-type/viz" element={<InvestorTypeVizPage />} />
           <Route path="/budget" element={<BudgetPage />} />
           <Route path="/budget/viz" element={<BudgetVizPage />} />
+          <Route path="/style" element={<StylePage />} />
           <Route path="/outcome" element={<OutcomePage />} />
         </Routes>
       </Router>
