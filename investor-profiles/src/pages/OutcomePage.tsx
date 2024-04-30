@@ -121,6 +121,15 @@ const OutcomePage = () => {
         >
           Go Back
         </Button>
+        <Button
+          variant="contained"
+          onClick={() => navigate(`/`)}
+          sx={{
+            mt: 2,
+          }}
+        >
+          Restart
+        </Button>
       </Box>
     </Box>
   );
