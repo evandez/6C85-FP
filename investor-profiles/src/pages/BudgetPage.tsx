@@ -107,7 +107,7 @@ const BudgetPage = () => {
         )}
       </Box>
 
-      <Typography variant="p" sx={{textAlign: "centre"}}>
+      <Typography variant="p" sx={{textAlign: "left"}}>
         The plot above shows the distributions of prices that {inv_text} investor
         has paid when making a prperty investment. You can use it to help inform your 
         choice further.

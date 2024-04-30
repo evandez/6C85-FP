@@ -33,7 +33,6 @@ function getColorForInvestorType(investorType: string): string {
 }
 
 
-
 const BudgetVizPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -79,8 +78,9 @@ const BudgetVizPage = () => {
       sx={{
         display: "flex",
         flexDirection: "column",
-        gap: 0,
+        gap: 5,
         textAlign: "left",
+        justifyContent: "center"
       }}
     >
       {/* Introduction Text */}
@@ -196,7 +196,7 @@ const BudgetVizPage = () => {
             mt: 2,
           }}
         >
-          Next: Pick a location
+          Next: Pick a style
         </Button>
       </Box>
     </Box>
