@@ -35,8 +35,8 @@ function determineArticle(investorType: string): string {
     }
   }
 
-// const NEXT_PAGE = "/style/viz";
-const NEXT_PAGE = "/outcome";
+const NEXT_PAGE = "/style/viz";
+// const NEXT_PAGE = "/outcome";
 const STYLE_TYPES = [
   {
     slug: "Modern",
@@ -68,9 +68,9 @@ const StyleChoice = ({ slug, title, description, image }) => {
       <Typography variant="h3">{title}</Typography>
       <Box sx={{ display: "flex", flexDirection: "row", gap: 2 }}>
         <img src={image} alt={title} style={{ height: "150px", width: "150px" }} />
-        <Typography variant="body1" sx={{ flexGrow: 1 }}>{description}</Typography>
+        <Typography variant="body1" sx={{ flexGrow: 1, textAlign : "left"}}>{description}</Typography>
       </Box>
-      <Button sx={{ margin: "auto" }} onClick={() => navigate(`${NEXT_PAGE}/?${searchParams.toString()}`)} variant="contained">
+      <Button sx={{ margin: "auto" }} onClick={() => navigate(`${NEXT_PAGE}/?${searchParams.toString()}&Style=${slug}`)} variant="contained">
         Follow this style
       </Button>
     </Box>

@@ -10,6 +10,7 @@ import InvestorTypePage from "./pages/InvestorTypePage";
 import InvestorTypeVizPage from "./pages/InvestorTypeVizPage";
 import BudgetVizPage from "./pages/BudgetVizPage";
 import StylePage from "./pages/StylePage";
+import StyleVizPage from "./pages/StyleVizPage";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/budget" element={<BudgetPage />} />
           <Route path="/budget/viz" element={<BudgetVizPage />} />
           <Route path="/style" element={<StylePage />} />
+          <Route path="/style/viz" element={<StyleVizPage />} />
           <Route path="/outcome" element={<OutcomePage />} />
         </Routes>
       </Router>
