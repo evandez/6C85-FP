@@ -11,6 +11,10 @@ import InvestorTypeVizPage from "./pages/InvestorTypeVizPage";
 import BudgetVizPage from "./pages/BudgetVizPage";
 import StylePage from "./pages/StylePage";
 import StyleVizPage from "./pages/StyleVizPage";
+import LocPage from "./pages/LocPage";
+import LocVizPage from "./pages/LocVizPage";
+import FlipPage from "./pages/FlipPage";
+import FlipVizPage from "./pages/FlipVizPage";
 
 function App() {
   return (
@@ -24,6 +28,10 @@ function App() {
           <Route path="/budget/viz" element={<BudgetVizPage />} />
           <Route path="/style" element={<StylePage />} />
           <Route path="/style/viz" element={<StyleVizPage />} />
+          <Route path="/loc" element={<LocPage />} />
+          <Route path="/loc/viz" element={<LocVizPage />} />
+          <Route path="/flip" element={<FlipPage />} />
+          {/* <Route path="/flip/viz" element={<FlipVizPage />} /> */}
           <Route path="/outcome" element={<OutcomePage />} />
         </Routes>
       </Router>
