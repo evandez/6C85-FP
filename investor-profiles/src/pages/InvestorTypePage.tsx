@@ -115,8 +115,9 @@ const InvestorTypePage = () => {
         buyer-seller transactional volume below. From this we can see that there is <i>high
         trade volume between small investors</i> and that <i>large investors sell primarily to 
         institutional investors</i>. Now take a look below to see the profit profiles of each 
-        investor type with its description before you decide.
+        investor type with its description before you decide. {'\n'}
         </Typography>
+
       </Box>
 
       <Box sx={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>

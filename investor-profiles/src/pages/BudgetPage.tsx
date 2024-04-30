@@ -6,22 +6,22 @@ const NEXT_PAGE = "/budget/viz";
 const INVESTOR_TYPE_TO_BUDGET_RANGES = {
   institutional: {
     min: 250000,
-    max: 2000000,
+    max: 1500000,
     step: 250000,
   },
   large: {
     min: 250000,
-    max: 2000000,
+    max: 1500000,
     step: 250000,
   },
   medium: {
     min: 250000,
-    max: 2000000,
+    max: 1500000,
     step: 250000,
   },
   small: {
     min: 250000,
-    max: 2000000,
+    max: 1500000,
     step: 250000,
   },
 };
