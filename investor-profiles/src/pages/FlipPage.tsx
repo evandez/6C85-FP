@@ -3,8 +3,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import Plot from 'react-plotly.js';
 
-// const NEXT_PAGE = "/flip/viz";
-const NEXT_PAGE = "/outcome";
+const NEXT_PAGE = "/flip/viz";
+// const NEXT_PAGE = "/outcome";
 
 import img_notflip from "../assets/notflip_icon.png";
 import img_flip from "../assets/flip_icon.png";
@@ -36,7 +36,6 @@ function determineArticle(investorType: string): string {
     }
   }
 
-// const NEXT_PAGE = "/outcome";
 const FLIP_TYPES = [
   {
     slug: "Flip",

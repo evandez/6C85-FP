@@ -31,7 +31,7 @@ function App() {
           <Route path="/loc" element={<LocPage />} />
           <Route path="/loc/viz" element={<LocVizPage />} />
           <Route path="/flip" element={<FlipPage />} />
-          {/* <Route path="/flip/viz" element={<FlipVizPage />} /> */}
+          <Route path="/flip/viz" element={<FlipVizPage />} />
           <Route path="/outcome" element={<OutcomePage />} />
         </Routes>
       </Router>

@@ -47,19 +47,27 @@ const FlipVizPage = () => {
   const inv_text = (<span>{article} <span style={{ color: inv_color }}>{investorType}</span></span>);
   const inv_text_no_article = (<span style={{ color: inv_color }}>{investorType}</span>);
   // State to hold the data for the second Plotly plot based on the budget
-  const [plot_dash, set_plot_dash] = useState({data: [], layout: {}});
+  const [plot_profit, set_plot_profit] = useState({data: [], layout: {}});
+  const [plot_holding, set_plot_holding] = useState({data: [], layout: {}});
   const [plot_index, set_plot_index] = useState({data: [], layout: {}});
 
   useEffect(() => {
     // Fetch for the second visualization based on investor type and budget
-    fetch(`/6C85-FP/loc_post/${loc}_dashboard.json`)
-      .then(response => response.json())
+    fetch(`/6C85-FP/flip_post/${investorType}_${budget}_${Style}_${loc}_profit.json`)
+    .then(response => response.json())
       .then(data => {
-        set_plot_dash(data);
+        set_plot_profit(data);
       })
       .catch(error => console.log(error));
 
-      fetch(`/6C85-FP/loc_post/${investorType}_${budget}_${Style}_${loc}_index.json`)
+      fetch(`/6C85-FP/flip_post/${investorType}_${budget}_${Style}_${loc}_holding_period.json`)
+      .then(response => response.json())
+        .then(data => {
+            set_plot_holding(data);
+        })
+        .catch(error => console.log(error));
+
+      fetch(`/6C85-FP/flip_post/${investorType}_${budget}_${Style}_${loc}_${flip_var}_index.json`)
       .then(response => response.json())
       .then(data => {
         set_plot_index(data);
@@ -79,16 +87,37 @@ const FlipVizPage = () => {
       }}
     >
       {/* Introduction Text */}
-      <Typography variant="h5">
+      {/* <Typography variant="h5">
         You have chosen to buy a property in the <b>{loc}</b> MAPC subregion
-      </Typography>
+      </Typography> */}
       
-      <Typography variant="p" sx={{textAlign: "left"}}>
+      {/* <Typography variant="p" sx={{textAlign: "left"}}>
         It is important to understand the demographics of the location you
         are investing in as your investment may have a direct impact on their
         housing prices. Here is a dashboad visualization of the demographics
         of the {loc} MAPC subregion.
-      </Typography>
+      </Typography> */}
+
+        <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          gap: 2,
+          textAlign: "left",
+          justifyContent: "center",
+        }}
+      >
+        {plot_profit.data.length ? (
+          <Plot
+            data={plot_profit.data}
+            layout={plot_profit.layout}
+            style={{ width: "100%"}}
+          />
+        ) : (
+          <Typography>Loading first visualization...</Typography>
+        )}
+      </Box>
+
 
       <Box
         sx={{
@@ -99,10 +128,10 @@ const FlipVizPage = () => {
           justifyContent: "center",
         }}
       >
-        {plot_dash.data.length ? (
+        {plot_holding.data.length ? (
           <Plot
-            data={plot_dash.data}
-            layout={plot_dash.layout}
+            data={plot_holding.data}
+            layout={plot_holding.layout}
             style={{ width: "100%"}}
           />
         ) : (
@@ -112,11 +141,11 @@ const FlipVizPage = () => {
 
       <Divider/>
 
-      <Typography variant="p" sx={{textAlign: "left"}}>
+      {/* <Typography variant="p" sx={{textAlign: "left"}}>
         We come back to the indices for making our choice.
         The indices plot below shows the impact on choosing the {loc} subregions for 
         {Style }style of properties with <b>${budget.toLocaleString()}</b> as {inv_text} investor.
-      </Typography>
+      </Typography> */}
       <Box
         sx={{
           display: "flex",
@@ -164,11 +193,11 @@ const FlipVizPage = () => {
             mt: 2,
           }}
         >
-          Next: Decide if you intend to flip your property
+          View Final Profile
         </Button>
       </Box>
     </Box>
   );
 };
 
-export default LocVizPage;
+export default FlipVizPage;
