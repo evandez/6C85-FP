@@ -112,7 +112,7 @@ const InvestorTypePage = () => {
       )}
         <Typography variant="body1" sx={{alignSelf: "center", width: "70%", textAlign: "left"}}>
         Start by choosing what type of investor you want to be. You can start by visualizing the Greater Boston
-        buyer-seller transactional volume below. From this we can see that there is <i>high
+        buyer-seller transactional volume above. From this we can see that there is <i>high
         trade volume between small investors</i> and that <i>large investors sell primarily to 
         institutional investors</i>. Now take a look below to see the profit profiles of each 
         investor type with its description before you decide. {'\n'}
