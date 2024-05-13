@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Plot from "react-plotly.js";
@@ -7,7 +7,12 @@ import img_institutional_investor from "../assets/institutional_investor.png";
 import img_large_investor from "../assets/large_investor.png";
 import img_medium_investor from "../assets/medium_investor.png";
 import img_small_investor from "../assets/small_investor.png";
-import GoBack from "../components/GoBack";
+import BodyText from "../components/BodyText";
+import VizLoadingDisplay from "../components/VizLoadingDisplay";
+import Page from "../components/Page";
+import TitleText from "../components/TitleText";
+import VizContainer from "../components/VizContainer";
+import NavigationButtons from "../components/NavigationButtons";
 
 const NEXT_PAGE = "/investor-type/viz";
 const INVESTOR_TYPES = [
@@ -102,26 +107,28 @@ const InvestorTypeChoice = ({ slug, title, description, image }) => {
         />
         <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
           <Typography variant="h3">{title}</Typography>
-          <Typography variant="body1" sx={{ flexGrow: 1, textAlign: "left" }}>
+          <BodyText sx={{ flexGrow: 1, textAlign: "left" }}>
             {description}
-          </Typography>
+          </BodyText>
         </Box>
       </Box>
-      {inv_profit_plot.data.length ? (
-        <Box
-          onClick={(event) => event.stopPropagation()}
-          sx={{ width: "100%" }}
-        >
-          <Plot
-            data={inv_profit_plot.data}
-            layout={inv_profit_plot.layout}
-            frames={inv_profit_plot.frames}
-            style={{ width: "100%" }}
-          />
-        </Box>
-      ) : (
-        <Typography>Loading map visualization...</Typography>
-      )}
+      <VizContainer>
+        {inv_profit_plot.data.length ? (
+          <Box
+            onClick={(event) => event.stopPropagation()}
+            sx={{ width: "100%" }}
+          >
+            <Plot
+              data={inv_profit_plot.data}
+              layout={inv_profit_plot.layout}
+              frames={inv_profit_plot.frames}
+              style={{ width: "100%" }}
+            />
+          </Box>
+        ) : (
+          <VizLoadingDisplay />
+        )}
+      </VizContainer>
     </Box>
   );
 };
@@ -142,15 +149,7 @@ const InvestorTypePage = () => {
   });
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        placeItems: "center",
-        marginTop: 4,
-        paddingBottom: 4,
-      }}
-    >
+    <Page>
       <Box
         sx={{
           display: "flex",
@@ -158,24 +157,21 @@ const InvestorTypePage = () => {
           flexWrap: "wrap",
         }}
       >
-        <Typography variant="h2" sx={{ marginBottom: 1 }}>
+        <TitleText>
           What <b>investor type</b> will you be?
-        </Typography>
-        <GoBack href="/" />
-        {volume_plot.data.length ? (
-          <Plot
-            data={volume_plot.data}
-            layout={volume_plot.layout}
-            style={{ width: "100%" }}
-          />
-        ) : (
-          <Typography>Loading visualization...</Typography>
-        )}
-        <Typography
-          variant="h5"
-          component="p"
-          sx={{ alignSelf: "center", maxWidth: "1200px", textAlign: "left" }}
-        >
+        </TitleText>
+        <VizContainer>
+          {volume_plot.data.length ? (
+            <Plot
+              data={volume_plot.data}
+              layout={volume_plot.layout}
+              style={{ width: "100%" }}
+            />
+          ) : (
+            <Typography>Loading visualization...</Typography>
+          )}
+        </VizContainer>
+        <BodyText>
           Start by choosing what type of investor you want to be. You can start
           by visualizing the Greater Boston buyer-seller transactional volume
           above. From this we can see that there is{" "}
@@ -183,7 +179,7 @@ const InvestorTypePage = () => {
           <i>large investors sell primarily to institutional investors</i>. Now
           take a look below to see the profit profiles of each investor type
           with its description before you decide. {"\n"}
-        </Typography>
+        </BodyText>
       </Box>
       <Box
         sx={{
@@ -200,7 +196,8 @@ const InvestorTypePage = () => {
           <InvestorTypeChoice key={`choice-${index}`} {...investorType} />
         ))}
       </Box>
-    </Box>
+      <NavigationButtons />
+    </Page>
   );
 };
 

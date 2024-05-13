@@ -1,19 +1,14 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import backgroundImage from "../assets/investor_journey_no_text.png";
 import "./LandingPage.css";
+import Page from "../components/Page";
+import NextPageButton from "../components/NextPageButton";
 
 const LandingPage = () => {
-  const navigate = useNavigate();
   return (
-    <Box
+    <Page
       sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        height: "100%",
-        width: "100%",
         margin: 0,
         padding: 0,
         gap: 2,
@@ -54,16 +49,9 @@ const LandingPage = () => {
       <Typography variant="h6" component="p" sx={{ fontWeight: "bold" }}>
         Your journey to your dream investment starts here.
       </Typography>
-      <Button
-        onClick={() => navigate("/investor-type")}
-        variant="contained"
-        sx={{
-          width: 200,
-          fontSize: "1.25rem",
-        }}
-      >
+      <NextPageButton href={"/investor-type"} showArrow={false}>
         Start here
-      </Button>
+      </NextPageButton>
       <Box
         sx={{
           marginTop: "auto",
@@ -101,7 +89,7 @@ const LandingPage = () => {
           </a>
         </Typography>
       </Box>
-    </Box>
+    </Page>
   );
 };
 
