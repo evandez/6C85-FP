@@ -84,8 +84,8 @@ const StyleVizPage = () => {
   return (
     <Page>
       <TitleText>
-        With a <b>{Style}</b> style of property, you get to enjoy multiple
-        amenities.
+        With a <b>{Style.toLowerCase()}</b> style of property, you get to enjoy
+        multiple amenities.
       </TitleText>
 
       <BodyText>
