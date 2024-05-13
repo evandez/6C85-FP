@@ -16,7 +16,8 @@ export default function NextPageButton({
         ...sx,
       }}
     >
-      {children} {showArrow && <span> &rarr;</span>}
+      Next: {children}
+      {showArrow && <span> &rarr;</span>}
     </OurButton>
   );
 }

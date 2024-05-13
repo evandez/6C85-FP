@@ -125,16 +125,7 @@ const InvestorTypeVizPage = () => {
         investors were largely responsible for the 2008 housing crisis.
       </BodyText>
 
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          flexDirection: "row",
-          gap: 2,
-          width: "100%",
-          maxWidth: "1500px",
-        }}
-      >
+      <VizContainer>
         {activity_freq.data.length ? (
           <Plot
             data={activity_freq.data}
@@ -144,7 +135,7 @@ const InvestorTypeVizPage = () => {
         ) : (
           <VizLoadingDisplay />
         )}
-      </Box>
+      </VizContainer>
 
       <BodyText>
         Now if we account for the proportions of investor activity by each type
@@ -191,7 +182,7 @@ const InvestorTypeVizPage = () => {
           <Plot
             data={plot_map.data}
             layout={plot_map.layout}
-            style={{ plot_map: "100%" }}
+            style={{ width: "100%", maxWidth: "800px" }}
           />
         ) : (
           <VizLoadingDisplay />
@@ -220,7 +211,7 @@ const InvestorTypeVizPage = () => {
           <Plot
             data={plot_index.data}
             layout={plot_index.layout}
-            style={{ plot_index: "100%" }}
+            style={{ width: "100%", maxWidth: "800px" }}
           />
         ) : (
           <VizLoadingDisplay />
