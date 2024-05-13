@@ -49,7 +49,11 @@ const LandingPage = () => {
       <Typography variant="h6" component="p" sx={{ fontWeight: "bold" }}>
         Your journey to your dream investment starts here.
       </Typography>
-      <NextPageButton href={"/investor-type"} showArrow={false}>
+      <NextPageButton
+        href={"/investor-type"}
+        showArrow={false}
+        showNext={false}
+      >
         Start here
       </NextPageButton>
       <Box

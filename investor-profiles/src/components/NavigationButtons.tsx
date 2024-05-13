@@ -6,6 +6,8 @@ import { Box } from "@mui/material";
 export default function NavigationButtons({
   nextHref = null,
   nextText = "Next",
+  showNext = true,
+  showArrow = true,
   sx = {},
 }) {
   return (
@@ -19,7 +21,15 @@ export default function NavigationButtons({
       }}
     >
       <GoBackButton />
-      {nextHref && <NextPageButton href={nextHref}>{nextText}</NextPageButton>}
+      {nextHref && (
+        <NextPageButton
+          href={nextHref}
+          showArrow={showArrow}
+          showNext={showNext}
+        >
+          {nextText}
+        </NextPageButton>
+      )}
     </Box>
   );
 }

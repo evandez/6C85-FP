@@ -4,6 +4,7 @@ import OurButton from "./OurButton";
 
 export default function NextPageButton({
   href,
+  showNext = true,
   showArrow = true,
   sx = {},
   children,
@@ -16,7 +17,7 @@ export default function NextPageButton({
         ...sx,
       }}
     >
-      Next: {children}
+      {showNext && "Next: "} {children}
       {showArrow && <span>&nbsp;&rarr;</span>}
     </OurButton>
   );
