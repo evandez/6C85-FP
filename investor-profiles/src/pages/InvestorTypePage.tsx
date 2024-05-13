@@ -1,6 +1,5 @@
 import { Box, Typography } from "@mui/material";
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import Plot from "react-plotly.js";
 
 import img_institutional_investor from "../assets/institutional_investor.png";
@@ -13,6 +12,8 @@ import Page from "../components/Page";
 import TitleText from "../components/TitleText";
 import VizContainer from "../components/VizContainer";
 import NavigationButtons from "../components/NavigationButtons";
+import ChoiceBox from "../components/ChoiceBox";
+import ChoiceBoxes from "../components/ChoiceBoxes";
 
 const NEXT_PAGE = "/investor-type/viz";
 const INVESTOR_TYPES = [
@@ -58,7 +59,6 @@ const INVESTOR_TYPES = [
 ];
 
 const InvestorTypeChoice = ({ slug, title, description, image }) => {
-  const navigate = useNavigate();
   const [inv_profit_plot, set_inv_profit_plot] = useState({
     data: [],
     layout: {},
@@ -74,23 +74,13 @@ const InvestorTypeChoice = ({ slug, title, description, image }) => {
   }, [slug]);
 
   return (
-    <Box
+    <ChoiceBox
       sx={{
         display: "flex",
         flexDirection: "column",
-        placeItems: "center",
         maxWidth: "44%",
-        gap: 4,
-        padding: 4,
-        border: "4px solid darkgrey",
-        borderRadius: 2,
-        "&:hover": {
-          cursor: "pointer",
-          borderColor: "primary.light",
-          borderWidth: "4px",
-        },
       }}
-      onClick={() => navigate(`${NEXT_PAGE}/?investor-type=${slug}`)}
+      href={`${NEXT_PAGE}/?investor-type=${slug}`}
     >
       <Box
         sx={{
@@ -129,7 +119,7 @@ const InvestorTypeChoice = ({ slug, title, description, image }) => {
           <VizLoadingDisplay />
         )}
       </VizContainer>
-    </Box>
+    </ChoiceBox>
   );
 };
 
@@ -181,21 +171,11 @@ const InvestorTypePage = () => {
           with its description before you decide. {"\n"}
         </BodyText>
       </Box>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "row",
-          flexWrap: "wrap",
-          alignItems: "center",
-          justifyContent: "space-around",
-          gap: 4,
-          padding: 8,
-        }}
-      >
+      <ChoiceBoxes>
         {INVESTOR_TYPES.map((investorType, index) => (
           <InvestorTypeChoice key={`choice-${index}`} {...investorType} />
         ))}
-      </Box>
+      </ChoiceBoxes>
       <NavigationButtons />
     </Page>
   );
