@@ -1,7 +1,19 @@
 import { Box } from "@mui/material";
 import React from "react";
 
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+
+function useScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]); // Reacts to changes in pathname
+}
+
 export default function Page({ children, sx = {} }) {
+  useScrollToTop;
   return (
     <Box
       sx={{

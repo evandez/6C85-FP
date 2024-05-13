@@ -63,6 +63,7 @@ const LandingPage = () => {
           flexDirection: "column",
           gap: 1,
           marginBottom: 2,
+          maxWidth: "90%",
         }}
       >
         <Typography variant="body2">
@@ -90,7 +91,10 @@ const LandingPage = () => {
           This project was developed with guidance and feedback from the{" "}
           <a href="" target="_blank">
             Metropolitan Area Planning Commission (MAPC).
-          </a>
+          </a>{" "}
+          It is built on five datasets: Boston Residential Sales (MAPC,
+          2000-2023), US Census GeoJSON, the US Census from 2020, the Median MA
+          Household Income from the last 100 years, and ZIPCODE GeoJSON.
         </Typography>
       </Box>
     </Page>
