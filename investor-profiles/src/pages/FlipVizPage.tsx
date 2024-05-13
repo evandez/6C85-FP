@@ -7,6 +7,7 @@ import VizLoadingDisplay from "../components/VizLoadingDisplay";
 import NavigationButtons from "../components/NavigationButtons";
 import Page from "../components/Page";
 import TitleText from "../components/TitleText";
+import BodyText from "../components/BodyText";
 
 const NEXT_PAGE = "/outcome";
 
@@ -60,6 +61,11 @@ const FlipVizPage = () => {
         You decide to <b>{flipPretty}</b>.
       </TitleText>
 
+      <BodyText>
+        {flipPretty[0].toUpperCase() + flipPretty.slice(1)}ing is not uncommon
+        for other investors. The plot below shows how much investors profit
+        based on similar decisions to those you made.
+      </BodyText>
       <VizContainer>
         {plot_profit.data.length ? (
           <Plot
@@ -72,6 +78,12 @@ const FlipVizPage = () => {
         )}
       </VizContainer>
 
+      <BodyText>
+        Similarly, not all flips look the same. Some flips happen on a much
+        shorter timeline than others. Naturally, the shorter the flip, the more
+        likely the investor strictly purchased the property to flip. Below is a
+        plot of different flipping timelines for investors like you.
+      </BodyText>
       <VizContainer>
         {plot_holding.data.length ? (
           <Plot
@@ -84,6 +96,12 @@ const FlipVizPage = () => {
         )}
       </VizContainer>
 
+      <BodyText>
+        Most importantly, you should remember that flipping has consequences on
+        housing affordability in the neighborhoods where it happens frequently.
+        The plot below highlights the impact of flipping properties when an
+        investor makes similar choices to those that you did.
+      </BodyText>
       <VizContainer>
         {plot_index.data.length ? (
           <Plot

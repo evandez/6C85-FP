@@ -13,7 +13,7 @@ function useScrollToTop() {
 }
 
 export default function Page({ children, sx = {} }) {
-  useScrollToTop;
+  useScrollToTop();
   return (
     <Box
       sx={{

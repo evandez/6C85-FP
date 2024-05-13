@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import React, { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Plot from "react-plotly.js";
 
 const NEXT_PAGE = "/flip/viz";
@@ -19,20 +19,21 @@ import ChoiceBox from "../components/ChoiceBox";
 const FLIP_TYPES = [
   {
     slug: "Flip",
-    title: "Flipping",
-    description: "Selling off the property before 2 years",
+    title: "Flip",
+    description:
+      "Sell off the property before 2 years, making a tidy profit likely without renting the property.",
     image: img_flip,
   },
   {
     slug: "NoFlip",
-    title: "Not Flipping",
-    description: "Keeping the property for more than 2 years",
+    title: "Do Not Flip",
+    description:
+      "Keep the property for more than 2 years, potentially renting it or changing it in other ways.",
     image: img_notflip,
   },
 ];
 
 const FlipChoice = ({ slug, title, description, image }) => {
-  const navigate = useNavigate();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
 

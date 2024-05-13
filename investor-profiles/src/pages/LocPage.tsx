@@ -30,7 +30,10 @@ const LocPage = () => {
   return (
     <Page>
       <TitleText>Choose an MAPC subregion</TitleText>
-      <BodyText>Click on a region to choose it.</BodyText>
+      <BodyText>
+        You must next decide where to purchase your property in Greater Boston.
+        Click on a region to choose it.
+      </BodyText>
       <Divider sx={{ mb: 2 }} />
 
       <VizContainer>
