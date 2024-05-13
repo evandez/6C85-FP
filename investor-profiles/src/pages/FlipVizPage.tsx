@@ -1,40 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import { Box, Button, Typography, Divider } from "@mui/material";
-import { useLocation, useNavigate } from "react-router-dom";
-import Plot from 'react-plotly.js';
+import React, { useEffect, useState } from "react";
+import { Typography } from "@mui/material";
+import { useLocation } from "react-router-dom";
+import Plot from "react-plotly.js";
+import VizContainer from "../components/VizContainer";
+import VizLoadingDisplay from "../components/VizLoadingDisplay";
+import NavigationButtons from "../components/NavigationButtons";
+import Page from "../components/Page";
+import TitleText from "../components/TitleText";
 
 const NEXT_PAGE = "/outcome";
 
-function determineArticle(investorType: string): string {
-  // Convert the investorType to lowercase for case-insensitive comparison
-  const type = investorType.toLowerCase();
-
-  // Check if the investorType is equal to 'small', 'medium', or 'large'
-  if (type === 'small' || type === 'medium' || type === 'large') {
-    return 'a';
-  } else {
-    return 'an';
-  }
-}
-
-function getColorForInvestorType(investorType: string): string {
-  switch (investorType.toLowerCase()) {
-    case 'institutional':
-      return 'red';
-    case 'small':
-      return 'blue';
-    case 'large':
-      return 'green';
-    case 'medium':
-      return 'orange';
-    default:
-      return ''; // Default to empty string or any other default color
-  }
-}
-
-
 const FlipVizPage = () => {
-  const navigate = useNavigate();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const investorType = searchParams.get("investor-type");
@@ -42,161 +18,89 @@ const FlipVizPage = () => {
   const Style = searchParams.get("Style") ?? "Modern";
   const loc = searchParams.get("loc") ?? "ICC";
   const flip_var = searchParams.get("flip_var") ?? "Flip";
-  const article = determineArticle(investorType);
-  const inv_color = getColorForInvestorType(investorType);
-  const inv_text = (<span>{article} <span style={{ color: inv_color }}>{investorType}</span></span>);
-  const inv_text_no_article = (<span style={{ color: inv_color }}>{investorType}</span>);
   // State to hold the data for the second Plotly plot based on the budget
-  const [plot_profit, set_plot_profit] = useState({data: [], layout: {}});
-  const [plot_holding, set_plot_holding] = useState({data: [], layout: {}});
-  const [plot_index, set_plot_index] = useState({data: [], layout: {}});
+  const [plot_profit, set_plot_profit] = useState({ data: [], layout: {} });
+  const [plot_holding, set_plot_holding] = useState({ data: [], layout: {} });
+  const [plot_index, set_plot_index] = useState({ data: [], layout: {} });
 
   useEffect(() => {
     // Fetch for the second visualization based on investor type and budget
-    fetch(`/6C85-FP/flip_post/${investorType}_${budget}_${Style}_${loc}_profit.json`)
-    .then(response => response.json())
-      .then(data => {
+    fetch(
+      `/6C85-FP/flip_post/${investorType}_${budget}_${Style}_${loc}_profit.json`
+    )
+      .then((response) => response.json())
+      .then((data) => {
         set_plot_profit(data);
       })
-      .catch(error => console.log(error));
+      .catch((error) => console.log(error));
 
-      fetch(`/6C85-FP/flip_post/${investorType}_${budget}_${Style}_${loc}_holding_period.json`)
-      .then(response => response.json())
-        .then(data => {
-            set_plot_holding(data);
-        })
-        .catch(error => console.log(error));
+    fetch(
+      `/6C85-FP/flip_post/${investorType}_${budget}_${Style}_${loc}_holding_period.json`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        set_plot_holding(data);
+      })
+      .catch((error) => console.log(error));
 
-      fetch(`/6C85-FP/flip_post/${investorType}_${budget}_${Style}_${loc}_${flip_var}_index.json`)
-      .then(response => response.json())
-      .then(data => {
+    fetch(
+      `/6C85-FP/flip_post/${investorType}_${budget}_${Style}_${loc}_${flip_var}_index.json`
+    )
+      .then((response) => response.json())
+      .then((data) => {
         set_plot_index(data);
       })
-      .catch(error => console.log(error));
-
+      .catch((error) => console.log(error));
   }, [investorType, budget, Style, loc, flip_var]);
 
+  const flipPretty = flip_var.toLowerCase() === "flip" ? "flip" : "not flip";
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        gap: 5,
-        textAlign: "left",
-        justifyContent: "center"
-      }}
-    >
-      {/* Introduction Text */}
-      {/* <Typography variant="h5">
-        You have chosen to buy a property in the <b>{loc}</b> MAPC subregion
-      </Typography> */}
-      
-      {/* <Typography variant="p" sx={{textAlign: "left"}}>
-        It is important to understand the demographics of the location you
-        are investing in as your investment may have a direct impact on their
-        housing prices. Here is a dashboad visualization of the demographics
-        of the {loc} MAPC subregion.
-      </Typography> */}
+    <Page>
+      <TitleText>
+        You decide to <b>{flipPretty}</b>.
+      </TitleText>
 
-        <Box
-        sx={{
-          display: "flex",
-          flexDirection: "row",
-          gap: 2,
-          textAlign: "left",
-          justifyContent: "center",
-        }}
-      >
+      <VizContainer>
         {plot_profit.data.length ? (
           <Plot
             data={plot_profit.data}
             layout={plot_profit.layout}
-            style={{ width: "100%"}}
+            style={{ width: "100%", maxWidth: "800px" }}
           />
         ) : (
-          <Typography>Loading first visualization...</Typography>
+          <VizLoadingDisplay />
         )}
-      </Box>
+      </VizContainer>
 
-
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "row",
-          gap: 2,
-          textAlign: "left",
-          justifyContent: "center",
-        }}
-      >
+      <VizContainer>
         {plot_holding.data.length ? (
           <Plot
             data={plot_holding.data}
             layout={plot_holding.layout}
-            style={{ width: "100%"}}
+            style={{ width: "100%", maxWidth: "800px" }}
           />
         ) : (
           <Typography>Loading first visualization...</Typography>
         )}
-      </Box>
+      </VizContainer>
 
-      <Divider/>
-
-      {/* <Typography variant="p" sx={{textAlign: "left"}}>
-        We come back to the indices for making our choice.
-        The indices plot below shows the impact on choosing the {loc} subregions for 
-        {Style }style of properties with <b>${budget.toLocaleString()}</b> as {inv_text} investor.
-      </Typography> */}
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "row",
-          gap: 2,
-          textAlign: "left",
-          justifyContent: "center",
-        }}
-      >
+      <VizContainer>
         {plot_index.data.length ? (
           <Plot
             data={plot_index.data}
             layout={plot_index.layout}
-            style={{ width: "100%"}}
+            style={{ width: "100%", maxWidth: "800px" }}
           />
         ) : (
           <Typography>Loading first visualization...</Typography>
         )}
-      </Box>
+      </VizContainer>
 
-
-
-      {/* Navigation Buttons */}
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "center",
-          gap: 2,
-        }}
-      >
-        <Button
-          variant="contained"
-          onClick={() => navigate(-1)}
-          sx={{
-            mt: 2,
-          }}
-        >
-          Go Back
-        </Button>
-        <Button
-          variant="contained"
-          onClick={() => navigate(`${NEXT_PAGE}/?${searchParams.toString()}`)}
-          sx={{
-            mt: 2,
-          }}
-        >
-          View Final Profile
-        </Button>
-      </Box>
-    </Box>
+      <NavigationButtons
+        nextHref={`${NEXT_PAGE}/?${searchParams.toString()}`}
+        nextText="View Final Profile"
+      />
+    </Page>
   );
 };
 
